@@ -8,6 +8,16 @@ app = FastAPI(title="Whisper API")
 # Load the model once when the app starts
 model = WhisperModel("base", device="cpu", compute_type="int8")
 
+
+# Health check endpoint
+@app.get("/")
+def root():
+    return {
+        "message": "Whisper API is running",
+        "status": "healthy"
+    }
+
+
 @app.post("/transcribe")
 async def transcribe(file: UploadFile = File(...)):
     temp_path = None
