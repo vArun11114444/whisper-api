@@ -6,7 +6,7 @@ import os
 app = FastAPI(title="Whisper API")
 
 # Load the model once when the app starts
-model = WhisperModel("small", device="cpu", compute_type="int8")
+model = WhisperModel("base", device="cpu", compute_type="int8")
 
 @app.post("/transcribe")
 async def transcribe(file: UploadFile = File(...)):
